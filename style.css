@@ -1,0 +1,264 @@
+/* Базовые настройки и переменные */
+:root {
+    --bg-light: #f9fafb;
+    --dark: #0f172a;
+    --darker: #020617;
+    --gold: #d97706; /* Золотой акцент для традиционного стиля */
+    --gold-light: #f59e0b;
+    --text-main: #334155;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.center { text-align: center; }
+.white-text { color: var(--white); }
+.subtitle { color: #94a3b8; font-size: 1.1rem; margin-bottom: 40px; }
+
+/* Навигация (Стекло) */
+.glass-nav {
+    position: fixed;
+    top: 0; 
+    width: 100%;
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.85);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo { font-weight: 800; font-size: 1.5rem; color: var(--dark); letter-spacing: -0.5px; }
+.logo span { color: var(--gold); }
+
+.links a {
+    text-decoration: none;
+    color: var(--dark);
+    margin-left: 35px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.links a:hover { color: var(--gold); }
+
+/* Hero Section (Главный экран) */
+.hero-premium {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--darker);
+    color: var(--white);
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.35; /* Затемняем картинку, чтобы текст читался */
+    z-index: 1;
+}
+
+.hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.badge {
+    background: rgba(217, 119, 6, 0.2);
+    color: var(--gold-light);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1px solid var(--gold);
+}
+
+.hero-premium h1 {
+    font-size: 5.5rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1;
+    margin: 25px 0;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, var(--gold-light), #fcd34d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-inner p { font-size: 1.2rem; color: #cbd5e1; margin-bottom: 40px; }
+
+/* Кнопки */
+.btn-main {
+    background: var(--gold);
+    color: var(--white);
+    padding: 16px 36px;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 700;
+    margin-right: 15px;
+    transition: 0.3s;
+    display: inline-block;
+}
+.btn-main:hover { background: var(--gold-light); transform: translateY(-3px); }
+
+.btn-outline {
+    border: 2px solid var(--white);
+    color: var(--white);
+    padding: 14px 36px;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: 0.3s;
+    display: inline-block;
+}
+.btn-outline:hover { background: var(--white); color: var(--dark); }
+
+/* Отступы для секций */
+section { padding: 120px 0; }
+.tag { color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
+h2 { font-size: 2.8rem; color: var(--dark); margin-bottom: 20px; line-height: 1.2; letter-spacing: -1px; }
+
+/* Grid (О проекте) */
+.grid-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+.image-block img { width: 100%; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); }
+.text-block p { margin-bottom: 20px; font-size: 1.1rem; }
+
+/* Темная секция (Логика и Команда) */
+.dark-section {
+    background-color: var(--dark);
+    border-radius: 40px;
+    margin: 0 20px;
+    padding: 100px 20px;
+}
+
+.logic-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 50px;
+}
+.l-card {
+    background: var(--darker);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 40px;
+    border-radius: 24px;
+    color: var(--white);
+    transition: 0.3s;
+}
+.l-card:hover { transform: translateY(-10px); border-color: var(--gold); }
+.step-num { font-size: 3.5rem; font-weight: 800; color: rgba(255,255,255,0.05); line-height: 1; margin-bottom: 15px; }
+.l-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--gold-light); }
+.tech-img { width: 100%; border-radius: 12px; margin-top: 20px; opacity: 0.8; }
+
+/* Галерея прототипов */
+.gallery-premium {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 50px;
+}
+.gallery-item img { width: 100%; height: 400px; object-fit: cover; border-radius: 20px; border: 1px solid #e2e8f0; transition: 0.4s; }
+.gallery-item img:hover { transform: scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+.gallery-item.main-p { grid-column: span 2; }
+.gallery-item.main-p img { height: 600px; }
+
+/* Интервью со спонсором */
+.sponsor-box {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 50px;
+    background: var(--white);
+    padding: 60px;
+    border-radius: 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    align-items: start;
+}
+.sponsor-profile img { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 4px solid var(--gold); margin-bottom: 20px; }
+.sponsor-profile h3 { font-size: 1.8rem; color: var(--dark); margin-bottom: 5px; }
+.role { color: var(--gold); font-weight: 700; }
+.school { color: #64748b; font-size: 0.9rem; }
+
+.qa-block { background: var(--bg-light); padding: 25px; border-radius: 16px; border-left: 4px solid var(--gold); margin-bottom: 20px; }
+.qa-block p { margin-bottom: 10px; }
+.learned-block { margin-top: 30px; padding-top: 30px; border-top: 1px solid #e2e8f0; }
+
+/* Команда */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 60px;
+}
+.team-card { text-align: center; }
+.team-card img { width: 220px; height: 220px; border-radius: 24px; object-fit: cover; margin-bottom: 25px; filter: grayscale(100%); transition: 0.4s; }
+.team-card:hover img { filter: grayscale(0%); transform: translateY(-10px); }
+.team-card h3 { color: var(--white); font-size: 1.5rem; }
+.motivation { color: #94a3b8; font-style: italic; margin-top: 15px; font-size: 0.95rem; }
+
+/* Таймлайн */
+.timeline-flex { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
+.t-box { background: var(--white); padding: 40px; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); border: 1px solid #f1f5f9; }
+.t-box h4 { font-size: 1.3rem; color: var(--dark); margin-bottom: 15px; }
+.highlight-box { background: var(--gold); color: var(--white); }
+.highlight-box h4 { color: var(--white); }
+
+/* Подвал */
+footer { background: var(--darker); color: var(--white); padding: 80px 20px; }
+footer h2 { color: var(--white); font-size: 2rem; margin-bottom: 10px; }
+.footer-link { color: var(--gold-light); text-decoration: none; font-weight: 600; margin-top: 20px; display: inline-block; }
+
+/* Анимации при скролле (Магия) */
+.reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+/* Адаптация под телефоны */
+@media (max-width: 900px) {
+    .grid-main, .logic-steps, .gallery-premium, .sponsor-box, .team-grid, .timeline-flex { grid-template-columns: 1fr; }
+    .hero-premium h1 { font-size: 3.5rem; }
+    .gallery-item.main-p { grid-column: span 1; }
+    .dark-section { margin: 0; border-radius: 0; }
+    .links { display: none; } /* Скрываем меню на мобилках для простоты */
+}
