@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sheber AI | Digitizing Qazaq Kuresi</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="glass-nav">
+        <div class="nav-content">
+            <div class="logo">SHEBER<span>.AI</span></div>
+            <div class="links">
+                <a href="#about">Mission</a>
+                <a href="#logic">How it Works</a>
+                <a href="#prototype">Prototypes</a>
+                <a href="#sponsor">Interview</a>
+                <a href="#authors">Team</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-premium">
+        <div class="hero-bg" style="background-image: url('hero-bg.jpg');"></div>
+        <div class="hero-inner">
+            <span class="badge">Preserving Tradition with Tech</span>
+            <h1>DIGITIZING<br><span class="gradient-text">QAZAQ KURESI.</span></h1>
+            <p>The world's first AI-powered pocket coach for traditional martial arts.</p>
+            <div class="hero-cta">
+                <a href="#logic" class="btn-main">See the Tech</a>
+                <a href="https://github.com/твоя-ссылка" class="btn-outline">GitHub Repo</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="reveal">
+        <div class="container grid-main">
+            <div class="text-block">
+                <span class="tag">The Problem & Solution</span>
+                <h2>Engineering the Perfect Throw</h2>
+                <p><strong>What it is:</strong> Sheber AI is a mobile application that acts as your personal digital Sensei for Qazaq Kuresi.</p>
+                <p><strong>The Problem:</strong> Beginners often struggle with the exact biomechanics of traditional throws (like Jambas). Incorrect technique leads to bad muscle memory and injuries.</p>
+                <p><strong>Why it matters:</strong> In wrestling, millimeters and precise angles define the winner. We want to make elite-level coaching accessible to everyone, even in remote villages.</p>
+            </div>
+            <div class="image-block">
+                <img src="gym-real.jpg" alt="Training Process on Tatami">
+            </div>
+        </div>
+    </section>
+
+    <section id="logic" class="dark-section reveal">
+        <div class="container">
+            <h2 class="center white-text">System Logic & Technology</h2>
+            <p class="center white-text subtitle">Powered by Python & MediaPipe Computer Vision</p>
+            
+            <div class="logic-steps">
+                <div class="l-card">
+                    <div class="step-num">01</div>
+                    <h3>Pose Detection</h3>
+                    <p>The smartphone camera captures the throw at 60 FPS. MediaPipe Pose extracts 33 3D landmarks of the human body.</p>
+                    <img src="ai-skeleton.jpg" alt="AI Tracking" class="tech-img">
+                </div>
+                <div class="l-card">
+                    <div class="step-num">02</div>
+                    <h3>Math & Angles</h3>
+                    <p>Our Python logic calculates the exact degrees in the knees, hips, and back, comparing them to the "Gold Standard" of a professional Paluan.</p>
+                    <img src="math-logic.jpg" alt="Angle Math" class="tech-img">
+                </div>
+                <div class="l-card">
+                    <div class="step-num">03</div>
+                    <h3>Instant Feedback</h3>
+                    <p>If the back is bent incorrectly, the screen flashes red and provides voice feedback to correct the posture immediately.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="prototype" class="reveal">
+        <div class="container">
+            <h2 class="center">From Notebooks to UI</h2>
+            <p class="center subtitle">Final sketches and digital prototypes of Sheber AI.</p>
+            <div class="gallery-premium">
+                <div class="gallery-item main-p"><img src="final-ui.jpg" alt="Final UI App Design"></div>
+                <div class="gallery-item"><img src="sketch1.jpg" alt="Initial Concept Sketch"></div>
+                <div class="gallery-item"><img src="sketch2.jpg" alt="Feedback Screen Sketch"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sponsor" class="reveal">
+        <div class="container">
+            <div class="sponsor-box">
+                <div class="sponsor-profile">
+                    <img src="nariman.jpg" alt="Nariman Mursalimov">
+                    <h3>Nariman Mursalimov</h3>
+                    <p class="role">Technical Sponsor / Developer</p>
+                    <p class="school">9th Grade, IB BIL</p>
+                </div>
+                <div class="sponsor-text">
+                    <h2>Sponsor Interview: Brotherhood & Code</h2>
+                    <p><em>Background:</em> My technical sponsor is my classmate, Nariman. I've always helped him out during wrestling practice, and he is a genius in CS. I went to his dorm room (jataha) to ask if we could code this project.</p>
+                    
+                    <div class="qa-block">
+                        <p><strong>Q: "Nareke, bro, can we run this MediaPipe on regular phones for the guys in the gym?"</strong></p>
+                        <p><strong>Nariman:</strong> "Bro, you've helped me so many times on the mat, we’re getting this done. Yes, Python handles it easily. The phone will track the joints automatically; the main thing is placing the camera correctly."</p>
+                    </div>
+                    
+                    <div class="qa-block">
+                        <p><strong>Q: "What’s going to be the hardest part to finish our MVP?"</strong></p>
+                        <p><strong>Nariman:</strong> "The hardest part isn’t the AI, it’s the math. We need to record your perfect Jambas throw, calculate the exact degrees, and write the logic to compare beginners' movements to your technique."</p>
+                    </div>
+
+                    <div class="learned-block">
+                        <h3>What I Learned:</h3>
+                        <p>A beautiful design isn't the priority right now. The core is the exact mathematics (calculating angles between joint coordinates). We decided to focus purely on one core Qazaq Kuresi throw to make the analysis flawless before the deadline.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="authors" class="dark-section reveal">
+        <div class="container">
+            <h2 class="center white-text">Meet the Creators</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="nurken.jpg" alt="Author">
+                    <h3>Kadyr Nurken</h3>
+                    <p class="role">Lead Visionary & UI Design</p>
+                    <p class="motivation">"I want to digitize our national heritage. Combining the traditions of Qazaq Kuresi with modern AI is my ultimate goal."</p>
+                </div>
+                <div class="team-card">
+                    <img src="madi.jpg" alt="Author">
+                    <h3>Madi</h3>
+                    <p class="role">Co-creator & Research</p>
+                    <p class="motivation">"My job is testing our ideas on the real tatami. We make sure the AI actually understands real wrestling dynamics."</p>
+                </div>
+                <div class="team-card">
+                    <img src="nariman-code.jpg" alt="Sponsor">
+                    <h3>Nariman Mursalimov</h3>
+                    <p class="role">Technical Lead / Sponsor</p>
+                    <p class="motivation">"Translating physical movements into Python code and math formulas is the best coding challenge I've had."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="timeline" class="reveal">
+        <div class="container">
+            <h2 class="center">Project Roadmap</h2>
+            <div class="timeline-flex">
+                <div class="t-box">
+                    <h4>Phase 1: Research</h4>
+                    <p>Studying MediaPipe limits and recording baseline Qazaq Kuresi throws.</p>
+                </div>
+                <div class="t-box">
+                    <h4>Phase 2: MVP</h4>
+                    <p>Writing the Python logic to calculate joint angles and trigger alerts.</p>
+                </div>
+                <div class="t-box highlight-box">
+                    <h4>Future Vision</h4>
+                    <p>Provide the app for free to rural schools in Kazakhstan to train kids safely without expensive coaches.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container center">
+            <h2>SHEBER AI</h2>
+            <p>Design Unit 3 Summative Project © 2026 | IB BIL</p>
+            <a href="https://github.com/" class="footer-link">View Source on GitHub</a>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15 });
+        
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
