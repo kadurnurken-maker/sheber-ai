@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Development Process | Sheber AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:     #080b10;
+    --card:   #111318;
+    --card2:  #161b24;
+    --border: rgba(255,255,255,0.08);
+    --text:   #f0f0f0;
+    --muted:  rgba(255,255,255,0.45);
+    --accent: #3a8ef6;
+    --gold:   #f0c040;
+    --green:  #27ae60;
+    --red:    #e74c3c;
+    --radius: 20px;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  .glass-nav {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    background: rgba(8,11,16,0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-content {
+    max-width: 1100px; margin: 0 auto;
+    padding: 14px 24px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .logo { font-weight: 800; font-size: 18px; letter-spacing: -0.5px; text-decoration: none; color: var(--text); }
+  .logo span { color: var(--gold); }
+  .links a { text-decoration: none; color: var(--muted); font-size: 13px; margin-left: 28px; transition: color 0.2s; }
+  .links a:hover { color: var(--text); }
+  .links a.active { color: var(--gold); }
+
+  /* ── HERO ── */
+  .process-hero {
+    padding: 140px 24px 90px;
+    background: linear-gradient(180deg, #0d1117 0%, var(--bg) 100%);
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .process-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(240,192,64,0.10) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-chip {
+    display: inline-block;
+    background: rgba(240,192,64,0.12); border: 1px solid rgba(240,192,64,0.28); color: var(--gold);
+    padding: 5px 18px; border-radius: 100px;
+    font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .process-hero h1 {
+    font-size: clamp(40px, 7vw, 76px); font-weight: 800; letter-spacing: -3px; line-height: 1.0; margin-bottom: 22px;
+  }
+  .process-hero h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, #fff 20%, var(--gold) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .process-hero p { font-size: 17px; color: var(--muted); max-width: 520px; margin: 0 auto; }
+
+  /* ── TIMELINE ── */
+  .timeline { max-width: 1060px; margin: 0 auto; padding: 90px 24px 60px; }
+
+  /* ── PHASE ROW ── */
+  .phase {
+    display: grid; grid-template-columns: 180px 1fr; gap: 52px;
+    margin-bottom: 100px;
+    opacity: 0; transform: translateY(36px);
+    transition: opacity 0.75s ease, transform 0.75s ease;
+  }
+  .phase.visible { opacity: 1; transform: translateY(0); }
+
+  .phase-meta { text-align: right; padding-top: 4px; }
+  .phase-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 8px;
+  }
+  .phase-title {
+    font-size: 30px; font-weight: 800; letter-spacing: -1.5px;
+    color: var(--text); line-height: 1; margin-bottom: 10px;
+  }
+  .phase-title.gold {
+    background: linear-gradient(135deg, var(--gold), #e09000);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .phase-date { font-family: 'Space Mono', monospace; font-size: 11px; color: #555e6e; }
+  .phase-meta::after {
+    content: ''; display: block;
+    width: 1px; background: rgba(255,255,255,0.07);
+    height: 220px; margin: 18px 0 0 auto;
+  }
+
+  .phase-body { border-left: 1px solid rgba(255,255,255,0.07); padding-left: 40px; }
+  .eyebrow {
+    font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 20px;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 32px 36px; margin-bottom: 20px;
+  }
+  .card h3 { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+  .card p  { font-size: 15px; color: var(--muted); }
+  .card.gold-border { border-color: rgba(240,192,64,0.30); }
+  .card.gold-border h3 { color: var(--gold); }
+  .card.mt { margin-top: 20px; }
+
+  /* ── PHOTO GRID ── */
+  .photo-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px; margin-bottom: 20px;
+  }
+  .photo-slot {
+    position: relative; border-radius: 16px; overflow: hidden;
+    background: var(--card2); border: 1px solid var(--border);
+    aspect-ratio: 16/10;
+  }
+  .photo-slot img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+  .photo-label {
+    position: absolute; top: 12px; left: 12px;
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 100px;
+  }
+  .dark-chip { background: rgba(0,0,0,0.65); color: rgba(255,255,255,0.75); }
+  .gold-chip { background: var(--gold); color: #080b10; }
+
+  /* ── PROBLEM / FIX GRID ── */
+  .pf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+  .pf-item { border-radius: 12px; padding: 18px 20px; font-size: 14px; color: var(--text); }
+  .pf-item strong {
+    display: block; font-size: 10px; letter-spacing: 1.5px;
+    text-transform: uppercase; margin-bottom: 6px; font-weight: 700;
+  }
+  .pf-item.prob { background: rgba(231,76,60,0.12); border-left: 3px solid var(--red); }
+  .pf-item.prob strong { color: #e87e74; }
+  .pf-item.fix  { background: rgba(39,174,96,0.12); border-left: 3px solid var(--green); }
+  .pf-item.fix  strong { color: #5ec987; }
+
+  /* ── FEEDBACK LIST ── */
+  .fb-list { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+  .fb-row {
+    background: var(--card2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 16px 20px;
+    display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 16px;
+  }
+  .fb-who { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+  .fb-quote { font-size: 14px; color: var(--muted); }
+  .fb-tag {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+    padding: 4px 12px; border-radius: 100px; white-space: nowrap;
+  }
+  .fb-tag.yellow { background: rgba(240,192,64,0.15); color: var(--gold); border: 1px solid rgba(240,192,64,0.25); }
+  .fb-tag.blue   { background: rgba(58,142,246,0.15); color: #7ab8ff; border: 1px solid rgba(58,142,246,0.25); }
+  .fb-tag.green  { background: rgba(39,174,96,0.15);  color: #5ec987; border: 1px solid rgba(39,174,96,0.25); }
+
+  /* ── COMPARE TABLE ── */
+  .compare-wrap { margin-top: 16px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+  .compare-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .compare-table th {
+    background: var(--card2); color: var(--muted); padding: 12px 16px; text-align: left;
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  }
+  .compare-table th.col-final { color: var(--gold); }
+  .compare-table td { padding: 12px 16px; color: var(--text); border-top: 1px solid var(--border); }
+  .compare-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .tag { display: inline-block; padding: 2px 10px; border-radius: 100px; font-size: 11px; font-weight: 700; }
+  .tag.bad  { background: rgba(231,76,60,0.15);  color: #e87e74; }
+  .tag.ok   { background: rgba(240,192,64,0.15); color: var(--gold); }
+  .tag.good { background: rgba(39,174,96,0.15);  color: #5ec987; }
+
+  /* ── STATS ── */
+  .stats-section { padding: 90px 24px; background: var(--card); border-top: 1px solid var(--border); }
+  .stats-inner { max-width: 1060px; margin: 0 auto; }
+  .stats-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); text-align: center; margin-bottom: 10px; }
+  .stats-title { font-size: 36px; font-weight: 800; letter-spacing: -1.5px; color: var(--text); text-align: center; margin-bottom: 48px; }
+  .stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+  .stat-card {
+    border: 1px solid rgba(240,192,64,0.18); border-radius: var(--radius);
+    padding: 32px; text-align: center; transition: border-color 0.25s;
+  }
+  .stat-card:hover { border-color: rgba(240,192,64,0.55); }
+  .stat-num   { font-size: 48px; font-weight: 800; color: var(--gold); line-height: 1; }
+  .stat-label { font-size: 13px; color: var(--muted); margin-top: 8px; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center; padding: 48px 24px;
+    border-top: 1px solid var(--border);
+    font-size: 13px; color: #555e6e;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 740px) {
+    .phase              { grid-template-columns: 1fr; gap: 16px; }
+    .phase-meta         { text-align: left; }
+    .phase-meta::after  { display: none; }
+    .phase-body         { border-left: none; padding-left: 0; }
+    .pf-grid            { grid-template-columns: 1fr; }
+    .photo-grid         { grid-template-columns: 1fr; }
+    .stats-grid         { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="glass-nav">
+  <div class="nav-content">
+    <a href="index.html" class="logo">SHEBER<span>.AI</span></a>
+    <div class="links">
+      <a href="index.html#about">Mission</a>
+      <a href="index.html#logic">How it Works</a>
+      <a href="index.html#prototype">Prototypes</a>
+      <a href="index.html#sponsor">Interview</a>
+      <a href="process.html" class="active">Development</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="process-hero">
+  <div class="hero-chip">Criterion C · Design Process</div>
+  <h1>Building <em>SHEBER AI</em><br>from Scratch</h1>
+  <p>Three versions. Twelve weeks. Every bug, decision, and fix — documented.</p>
+</header>
+
+<!-- TIMELINE -->
+<div class="timeline">
+
+  <!-- ═══ PHASE 01 — ALPHA ═══ -->
+  <div class="phase" id="phase-alpha">
+    <div class="phase-meta">
+      <div class="phase-num">Phase 01</div>
+      <div class="phase-title">Alpha</div>
+      <div class="phase-date">Feb 2025</div>
+    </div>
+    <div class="phase-body">
+      <div class="eyebrow">Proof of Concept</div>
+
+      <div class="photo-grid">
+        <div class="photo-slot">
+          <img src="alpha_skeleton.png" alt="Alpha — MediaPipe skeleton tracking">
+          <div class="photo-label dark-chip">Pose Logic</div>
+        </div>
+        <div class="photo-slot">
+          <img src="alpha_ui.png" alt="Alpha — Initial interface with guide">
+          <div class="photo-label dark-chip">Initial UI</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>What the Alpha Was</h3>
+        <p>The Alpha focused on core mechanics. I tested skeletal landmark tracking to verify whether MediaPipe could detect joint angles during wrestling moves. At this stage there was no web interface — just a raw camera feed with landmark overlays and a static technique guide image for reference.</p>
+      </div>
+
+      <div class="card mt">
+        <h3>What Was Missing</h3>
+        <div class="pf-grid">
+          <div class="pf-item prob"><strong>Problem</strong>Ran as a local Python script only — no web interface or URL to share</div>
+          <div class="pf-item prob"><strong>Problem</strong>No automated rep counting — zero real-time feedback for athletes</div>
+          <div class="pf-item prob"><strong>Problem</strong>Only left knee analyzed — crash when that side was occluded</div>
+          <div class="pf-item prob"><strong>Problem</strong>No XP, no rank system — nothing to motivate continued training</div>
+        </div>
+      </div>
+
+      <div class="card mt">
+        <h3>Feedback That Shaped Beta</h3>
+        <div class="fb-list">
+          <div class="fb-row">
+            <div><div class="fb-who">Sponsor / Coach</div><div class="fb-quote">«The tracking is precise, but it needs a real UI to be useful in a gym.»</div></div>
+            <div class="fb-tag yellow">→ Web UI</div>
+          </div>
+          <div class="fb-row">
+            <div><div class="fb-who">User Testing</div><div class="fb-quote">«I can see the skeleton, but I don't know if I'm actually doing it right.»</div></div>
+            <div class="fb-tag yellow">→ HUD Feedback</div>
+          </div>
+          <div class="fb-row">
+            <div><div class="fb-who">User Testing</div><div class="fb-quote">«Can't tell my rank or progress — no motivation to keep going.»</div></div>
+            <div class="fb-tag yellow">→ XP & Ranks</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PHASE 02 — BETA ═══ -->
+  <div class="phase" id="phase-beta">
+    <div class="phase-meta">
+      <div class="phase-num">Phase 02</div>
+      <div class="phase-title">Beta</div>
+      <div class="phase-date">Apr 2025</div>
+    </div>
+    <div class="phase-body">
+      <div class="eyebrow">Full Web Application · v1.0</div>
+
+      <div class="photo-grid">
+        <div class="photo-slot">
+          <img src="beta_neon.png" alt="Beta — Neon AI PRO design">
+          <div class="photo-label dark-chip">Neon UI</div>
+        </div>
+        <div class="photo-slot">
+          <img src="beta_error.png" alt="Beta — WebRTC connection error being debugged">
+          <div class="photo-label dark-chip">Bug Fix</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Transition to Beta</h3>
+        <p>Beta moved everything to a full Streamlit web app with WebRTC live camera streaming. I experimented with a bold «SHEBER AI PRO» neon aesthetic. The biggest technical hurdle was a WebRTC connection error (screenshot above) that required configuring custom STUN servers and introducing <code style="font-family:'Space Mono',monospace;font-size:13px;color:var(--gold);">threading.Lock()</code> to prevent race conditions in rep counting.</p>
+      </div>
+
+      <div class="card mt">
+        <h3>Alpha → Beta: What Changed</h3>
+        <div class="compare-wrap">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Alpha</th>
+                <th class="col-final">Beta</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Interface</td><td><span class="tag bad">Terminal only</span></td><td><span class="tag good">Streamlit web app</span></td></tr>
+              <tr><td>Camera</td><td><span class="tag bad">Local script</span></td><td><span class="tag good">WebRTC live stream</span></td></tr>
+              <tr><td>Rep counting</td><td><span class="tag bad">None</span></td><td><span class="tag good">Angle-based, both knees</span></td></tr>
+              <tr><td>Rank system</td><td><span class="tag bad">Absent</span></td><td><span class="tag good">4 tiers: BALA → БАТЫР</span></td></tr>
+              <tr><td>Design</td><td><span class="tag bad">Plain text</span></td><td><span class="tag ok">Neon «AI PRO» style</span></td></tr>
+              <tr><td>Thread safety</td><td><span class="tag bad">Race conditions</span></td><td><span class="tag good">threading.Lock() added</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card mt">
+        <h3>Technical Challenges Solved</h3>
+        <div class="pf-grid">
+          <div class="pf-item prob"><strong>Challenge</strong>session_state not thread-safe → missed and doubled reps</div>
+          <div class="pf-item fix"><strong>Fix</strong>threading.Lock() guards global counters; UI syncs on each render cycle</div>
+          <div class="pf-item prob"><strong>Challenge</strong>MediaPipe model re-initialized every frame → severe lag</div>
+          <div class="pf-item fix"><strong>Fix</strong>@st.cache_resource loads model once at startup, reused across sessions</div>
+          <div class="pf-item prob"><strong>Challenge</strong>Left knee only → crash when that side was occluded</div>
+          <div class="pf-item fix"><strong>Fix</strong>Both knees wrapped in try/except; min(left, right) angle used</div>
+          <div class="pf-item prob"><strong>Challenge</strong>Missing image file crashed the entire app</div>
+          <div class="pf-item fix"><strong>Fix</strong>os.path.exists() check added; fallback to hero.jpg</div>
+        </div>
+      </div>
+
+      <div class="card gold-border mt">
+        <h3>What Still Needed Work After Beta</h3>
+        <p>The neon design was visually overloaded and distracted from the camera feed. WebRTC caused lag on cloud hosting. The rank name was barely noticeable. The XP progress bar briefly flashed 100% on level-up before resetting. HUD text clipped on small screens.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PHASE 03 — FINAL ═══ -->
+  <div class="phase" id="phase-final">
+    <div class="phase-meta">
+      <div class="phase-num">Phase 03</div>
+      <div class="phase-title gold">Final</div>
+      <div class="phase-date">May 2025</div>
+    </div>
+    <div class="phase-body">
+      <div class="eyebrow">Production Release · v2.0</div>
+
+      <div class="photo-grid">
+        <div class="photo-slot">
+          <img src="final_ui.png" alt="Final — Clean gold-on-dark production UI">
+          <div class="photo-label gold-chip">Production UI</div>
+        </div>
+        <div class="photo-slot">
+          <img src="final_github.png" alt="Final — GitHub repository proof">
+          <div class="photo-label gold-chip">Source Proof</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>The Final Polish</h3>
+        <p>The final version is a focused, stable release. The «AI PRO» neon branding was replaced with a clean <strong style="color:var(--text);">SHEBER</strong> identity — gold on dark, high-contrast, readable under gym lighting. Performance was the top priority: model complexity reduced from 1 → 0, frame skipping added, and the XP synchronisation bug fixed at its root.</p>
+      </div>
+
+      <div class="card mt">
+        <h3>Three Core Improvements</h3>
+        <div class="pf-grid">
+          <div class="pf-item fix"><strong>UI Simplified</strong>Neon dropped. Gold-on-dark palette. Rank name prominent in header. HUD readable at all screen sizes.</div>
+          <div class="pf-item fix"><strong>Lag Eliminated</strong>model_complexity: 1 → 0. Every 2nd frame skipped when CPU &gt; 80%. Target: &lt;30ms per frame.</div>
+          <div class="pf-item fix"><strong>XP Sync Fixed</strong>Progress bar clamped to rank_max before promotion. No more 100% flash bug at level-up.</div>
+          <div class="pf-item fix"><strong>Bilateral Stability</strong>Both knees tracked independently. min() angle logic prevents false negatives for any stance.</div>
+        </div>
+      </div>
+
+      <div class="card mt">
+        <h3>Beta → Final: User Feedback Resolved</h3>
+        <div class="fb-list">
+          <div class="fb-row">
+            <div><div class="fb-who">Sponsor / Coach</div><div class="fb-quote">Add Koterme & Shalu detection; show a session summary after training ends.</div></div>
+            <div class="fb-tag blue">→ Roadmap</div>
+          </div>
+          <div class="fb-row">
+            <div><div class="fb-who">User 1 — Student, 8/10</div><div class="fb-quote">Rank names were hard to spot — make them bigger and more prominent.</div></div>
+            <div class="fb-tag green">Fixed</div>
+          </div>
+          <div class="fb-row">
+            <div><div class="fb-who">User 2 — PE Teacher, 7/10</div><div class="fb-quote">Rep occasionally missed on fast movement; larger text for technique tips.</div></div>
+            <div class="fb-tag green">Fixed</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /timeline -->
+
+<!-- STATS -->
+<section class="stats-section">
+  <div class="stats-inner">
+    <div class="stats-eyebrow">By the Numbers</div>
+    <div class="stats-title">Alpha → Final in Numbers</div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-num">33</div><div class="stat-label">Body landmarks tracked per frame via MediaPipe</div></div>
+      <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">Rank tiers — BALA to ҰЛТТЫҚ БАТЫР</div></div>
+      <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Versions shipped — Alpha, Beta, Final</div></div>
+      <div class="stat-card"><div class="stat-num">&lt;30ms</div><div class="stat-label">Target frame processing time in Final</div></div>
+      <div class="stat-card"><div class="stat-num">1→0</div><div class="stat-label">model_complexity reduced for lower-end devices</div></div>
+      <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Beta testers — coach, student, PE teacher</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Sheber AI © 2025 · IB BIL Design Unit 3 Summative &nbsp;·&nbsp;
+     <a href="index.html">← Back to Main Site</a></p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.phase').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
